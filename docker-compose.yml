@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: retail_pg
+    environment:
+      POSTGRES_USER: retail_user
+      POSTGRES_PASSWORD: retail_pass
+      POSTGRES_DB: retail_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+  pipeline:
+    build: .
+    container_name: retail_pipeline
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app    # so charts are saved locally
+    environment:
+      DATABASE_URL: postgresql+psycopg2://retail_user:retail_pass@postgres:5432/retail_db
+    command: ["python", "pipeline.py"]
+
+volumes:
+  pgdata:

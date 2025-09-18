@@ -1,0 +1,6 @@
+customer_id,first_name,last_name,email,city
+1,Alice,Smith,alice@example.com,New York
+2,Bob,Johnson,bob@example.com,Los Angeles
+3,Charlie,Brown,charlie@example.com,Chicago
+4,Diana,Miller,diana@example.com,Houston
+5,Evan,Davis,evan@example.com,Phoenix
